@@ -1,0 +1,18 @@
+This is a temporary file
+The basic formula for finding the combinations among a group is nCr and our focus is to calculate it in least possible time
+Since we know, (a^p-1) % p = 1 (fermi's little theorem) where p cannot divides a
+              [a^-1 %p] = x {x : is a number with which we can achieve (x.a) % p = 1}
+combining both of these formulations we can say that 
+( a * a^p-2 ) % p = 1 where a^p-2 is the inverse of (a^-1)%p 
+now we can write the formula of combinations as 
+----> [ N! ]*[ ( R! )^-1]*[ ( N - R )! ^ -1 ] ----> [ N! ] * [ ( R! )^p-2 ] * [ ((N-R)!)^p-2 ]
+
+it is better to pre-compute the factorials as it will help us to find the nCr in constant time during the queries
+
+CRUX OF THE IDEA 
+initialize two vectors one for factorials and other for inverse of the factorials 
+
+factorial[i] = factorial[i-1] * i
+inv_fact = ((factorial[i]%p) ^ p-2 )%p
+
+
